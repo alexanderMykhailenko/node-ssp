@@ -357,6 +357,9 @@ var SSPInstance = Class.extend({
             var ix = 0;
             do {
               var len = buffer[2] + 5;
+              if(!len){//fix problem with error on buffer.copy
+                break;
+              }
               var buf = new Buffer(len);
               buffer.copy(buf, 0, ix, ix + len);
               parseBuffer(buf);
